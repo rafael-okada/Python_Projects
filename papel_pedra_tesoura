@@ -2,7 +2,7 @@ import os
 import random
 import logging
 
-logging.basicConfig(filename='pedrapapeltesoura.log')
+logging.basicConfig(filename='pedrapapeltesoura.log', level=logging.DEBUG)
 placar_voce = 0
 placar_computador = 0
 opcoes = ['Papel', 'Pedra', 'Tesoura']
@@ -21,6 +21,10 @@ while True == True:
     print('0 - Papel | 1 - Pedra | 2 - Tesoura')
 
     lance_jogador = int(input())
+    while lance_jogador not in range(0,3):
+        print('Opção não cadastrada, selecione novamete, por favor.')
+        print('0 - Papel | 1 - Pedra | 2 - Tesoura')
+        lance_jogador = int(input())
     lance_computador = random.randint(0,2)
     print('')
     print('=' * 50)
@@ -36,6 +40,8 @@ while True == True:
     elif lance_jogador == 2 and lance_computador == 0:
         print('Voê venceu!')
         placar_voce += 1
+    elif lance_jogador == lance_computador:
+        print('Lances iguais.')
     else:
         print('Você perdeu...')
         placar_computador += 1
@@ -47,5 +53,8 @@ while True == True:
         os.system('cls')
         continue
     else:
+        os.system('cls')
         print('Obrigado, até mais!')
+        logging.getLogger()
+        logging.info('Finished Game')
         break
